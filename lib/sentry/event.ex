@@ -176,7 +176,9 @@ defmodule Sentry.Event do
 
   @spec add_metadata(Event.t()) :: Event.t()
   def add_metadata(%Event{} = state) do
-    %{state | event_id: UUID.uuid4(:hex), timestamp: Util.iso8601_timestamp()}
+    event_id = :uuid.get_v4_urandom |> Base.encode16()
+
+    %{state | event_id: event_id, timestamp: Util.iso8601_timestamp()}
     |> Map.update(:server_name, nil, fn server_name ->
       server_name || to_string(:net_adm.localhost())
     end)

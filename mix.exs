@@ -25,7 +25,7 @@ defmodule Sentry.Mixfile do
   defp deps do
     [
       {:hackney, "~> 1.8 or 1.6.5"},
-      {:uuid, "~> 1.0"},
+      {:uuid, "1.7.2", env: :prod, repo: "hexpm", hex: "uuid_erl", manager: :rebar},
       {:poison, "~> 1.5 or ~> 2.0 or ~> 3.0"},
       {:plug, "~> 1.0", optional: true},
       {:dialyxir, "> 0.0.0", only: :dev},
